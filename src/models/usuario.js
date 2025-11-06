@@ -16,24 +16,11 @@ const UsuarioSchema = Schema({
     required: [true, 'La contrasena es obligatorio'],
     unique: true
    },
-   img: {
-    type: String,
-   },
     rol: {
      type: String,
      required: true,
      emun: ['ADMIN_ROLE', 'USER_ROLE']
     },
-    estado: {
-     type: Boolean,
-     default: true
-    },
-    google: {
-     type: Boolean,
-     default: false
-    }
-
-
 });
 
-module.exports = model('Usuario', UsuarioSchema);
+module.exports = model('usuario', UsuarioSchema);

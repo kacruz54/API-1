@@ -1,37 +1,69 @@
 const { response } = require("express");
+const bcryptjs = require("bcryptjs");
+const Usuario = require("../models/usuario");
 
 const createUser = async (req, res = response) => {
-  const { name, email, password, nickname } = req.body;
+  const { name, email, password, rol } = req.body;
 
-  if (!password) {
-    return res.status(400).json({
-      ok: false,
-      msg: "La contraseña es obligatoria para crear una cuenta",
+    const usuario = await new Usuario({ name, email, password, rol });
+
+    const salt = bcryptjs.genSaltSync();
+    usuario.password = bcryptjs.hashSync( password, salt );
+
+    await usuario.save();
+
+    res.json({
+      ok: true,
+      msg: "Usuario creado",
+      user: {
+        id: usuario._id,
+        name: usuario.name,
+        email: usuario.email,
+        rol: usuario.rol
+      }
     });
-  }
-
-  res.status(201).json({
-    ok: true,
-    msg: "Tu cuenta ha sido creada con éxito",
-  });
 };
 
 const loginUser = async (req, res = response) => {
   const { email, password } = req.body;
 
-  if (!password || !email) {
-    return res.status(400).json({
+  try {
+    const usuario = await Usuario.findOne({ email });
+    if (!usuario) {
+      return res.status(400).json({
+        ok: false,
+        msg: "Usuario o contraseña incorrectos"
+      });
+    }
+
+    const validPassword = bcryptjs.compareSync(password, usuario.password);
+    if (!validPassword) {
+      return res.status(400).json({
+        ok: false,
+        msg: "Usuario o contraseña incorrectos"
+      });
+    }
+
+    res.json({
+      ok: true,
+      msg: "Login exitoso",
+      user: {
+        id: usuario._id,
+        name: usuario.nombre,
+        email: usuario.correo,
+        rol: usuario.rol
+      }
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
       ok: false,
-      msg: "El email y la contraseña son obligatorios para iniciar sesión",
+      msg: "Error en el servidor"
     });
   }
-
-  res.json({
-    ok: true,
-    msg: "Login exitoso",
-    user: { email },
-  });
 };
+
 
 module.exports = {
   createUser,
