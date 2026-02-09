@@ -16,11 +16,17 @@ const UsuarioSchema = Schema({
     required: [true, 'La contrasena es obligatorio'],
     unique: true
    },
-    rol: {
-     type: String,
-     required: true,
-     emun: ['ADMIN_ROLE', 'USER_ROLE']
-    },
+   rol: {
+    type: String,
+    required: true,
+    emun: ['ADMIN_ROLE', 'USER_ROLE']
+   },
+   allow_key: {
+    type: String,
+    required: [true, 'El allow_key es obligatorio']
+   }
+}, {
+   timestamps: true
 });
 
 module.exports = model('usuario', UsuarioSchema);

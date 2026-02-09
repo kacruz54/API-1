@@ -10,6 +10,7 @@ class Server {
         this.port = process.env.PORT;
         this.usuariosPath = '/api/auth';
         this.productosPath = '/api/productos';
+        this.allowKeyPath = '/api/allow-key';
 
         this.conectarDB();
 
@@ -39,6 +40,7 @@ class Server {
     routes() {
         this.app.use( this.usuariosPath, require('../routes/auth.routes'));
         this.app.use( this.productosPath, require('../routes/productos.routes'));
+        this.app.use( this.allowKeyPath, require('../routes/allowKey.routes'));
     }
 
     listen() {
