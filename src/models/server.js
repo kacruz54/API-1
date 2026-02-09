@@ -9,6 +9,7 @@ class Server {
         this.app  = express();
         this.port = process.env.PORT;
         this.usuariosPath = '/api/auth';
+        this.productosPath = '/api/productos';
 
         this.conectarDB();
 
@@ -27,8 +28,8 @@ class Server {
         // CORS
         this.app.use( cors() );
 
-        // Lectura y parseo del body
-        this.app.use( express.json() );
+        this.app.use( express.json({ limit: '50mb' }) );
+        this.app.use( express.urlencoded({ extended: true, limit: '50mb' }) );
 
         // Directorio Público
         this.app.use( express.static('public') );
@@ -37,6 +38,7 @@ class Server {
 
     routes() {
         this.app.use( this.usuariosPath, require('../routes/auth.routes'));
+        this.app.use( this.productosPath, require('../routes/productos.routes'));
     }
 
     listen() {
