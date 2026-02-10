@@ -1,0 +1,28 @@
+{
+  "productoValido": {
+    "nombre": "Café Colombiano Premium",
+    "descripcion": "Café de altura cultivado en Colombia",
+    "precio": 24.99,
+    "cantidad": 100,
+    "tamano": "500g",
+    "categoria": "Insumos de cafeteria",
+    "origen": "Colombia",
+    "tipoTostado": "Medio",
+    "marca": "Smayke Coffee",
+    "imagenes": ["https://ejemplo.com/imagen1.jpg"]
+  },
+  "productoActualizado": {
+    "nombre": "Café Colombiano Premium - Actualizado",
+    "precio": 29.99,
+    "cantidad": 150
+  },
+  "productoCapsulas": {
+    "nombre": "Cápsulas Espresso Intenso",
+    "descripcion": "Cápsulas de café espresso",
+    "precio": 15.99,
+    "cantidad": 200,
+    "tamano": "10 unidades",
+    "categoria": "Insumos de cafeteria",
+    "marca": "Smayke"
+  }
+}

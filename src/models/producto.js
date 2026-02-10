@@ -29,12 +29,9 @@ const ProductoSchema = Schema({
     type: String,
     required: [true, 'La categoría es obligatoria'],
     enum: [
-      'Café en Grano',
-      'Café Molido',
-      'Café Instantáneo',
-      'Cápsulas',
-      'Accesorios',
-      'Máquinas',
+      'Insumos de pasteleria',
+      'Insumos de cafeteria',
+      'Snaks',
       'Otros'
     ]
    },

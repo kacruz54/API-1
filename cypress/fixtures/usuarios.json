@@ -1,0 +1,20 @@
+{
+  "usuarioValido": {
+    "name": "Juan Pérez Test",
+    "email": "juan.test@example.com",
+    "password": "password123",
+    "rol": "USER_ROLE",
+    "allow_key": ""
+  },
+  "usuarioAdmin": {
+    "name": "Admin Test",
+    "email": "admin.test@example.com",
+    "password": "admin123",
+    "rol": "ADMIN_ROLE",
+    "allow_key": ""
+  },
+  "loginValido": {
+    "email": "juan.test@example.com",
+    "password": "password123"
+  }
+}
